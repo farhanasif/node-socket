@@ -1,0 +1,18 @@
+{
+  "name": "node-socket",
+  "version": "1.0.0",
+  "description": "simple socket.io app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "socket"
+  ],
+  "author": "Farhan Asif",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
