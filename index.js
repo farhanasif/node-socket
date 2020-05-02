@@ -1,11 +1,17 @@
-var app = require('express')();
+const express = require('express')
+const app = express()
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
-});
+})
+
+app.get('/chat', (req,res) => {
+    res.sendFile(__dirname + '/views/chatroom.html');
+})
 
 io.on('connection', (socket) => {
 
