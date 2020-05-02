@@ -1,7 +1,8 @@
         var nickname = '';
+
         $(function () {
             var socket = io();
-
+            
             if(nickname == null || nickname == ''){
                 var person = prompt("Please enter nick", "Harry Potter");
                 if (person != null) {
@@ -48,6 +49,7 @@
                     var output = '<p><mark>'+nick+'</mark><small class="text-muted"> '+date+'</small><br />'+msg+'</p>';
                     $('#messages').append($('<li class="chat-content">').html(output));
                 }
+                $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
             });
 
             socket.on('init message', function(msg){
