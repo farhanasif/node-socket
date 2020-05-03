@@ -7,7 +7,8 @@
                 var person = prompt("Please enter nick", "Harry Potter");
                 if (person != null) {
                     nickname = person;
-                    socket.emit('init message', nickname + ' has joined');
+                    msg = ' has joined';
+                    socket.emit('init message', nickname, msg);
                 }
             }
             
@@ -18,7 +19,8 @@
                     var person = prompt("Please enter nick", "Harry Potter");
                     if (person != null) {
                         nickname = person;
-                        socket.emit('init message', nickname + ' has joined');
+                        msg = ' has joined';
+                        socket.emit('init message', nickname, msg);
 
                         var text = $("#m").val();
                         socket.emit('chat message', nickname, text);
@@ -49,23 +51,45 @@
                     var output = '<p><mark>'+nick+'</mark><small class="text-muted"> '+date+'</small><br />'+msg+'</p>';
                     $('#messages').append($('<li class="chat-content">').html(output));
                 }
-                $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+                //$("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
             });
 
-            socket.on('init message', function(msg){
+            socket.on('init message', function(msg, users){
+                //console.log(users);
+
+                if(users){
+                    $('#users').empty();
+                    for(var i=0; i<users.length; i++){
+                        console.log(users[i].name);
+                        var html = '<a class="nav-link text-success" href="#">'+users[i].name+'</a>';
+                        $('#users').append($('<li class="nav-item">').html(html));
+                    }
+                }
                 var date = formatDate("dddd h:mmtt d MMM yyyy");
                 var msg = '<p class="text-center"><small class="text-muted">'+date+' - '+ msg +'</small></p>';
                 $('#messages').append($('<li class="chat-content">').html(msg));
+
+                
             });
 
-            socket.on('close message', function(msg){
+            socket.on('close message', function(msg, users){
+                
+                if(users){
+                    $('#users').empty();
+                    for(var i=0; i<users.length; i++){
+                        console.log(users[i].name);
+                        var html = '<a class="nav-link text-success" href="#">'+users[i].name+'</a>';
+                        $('#users').append($('<li class="nav-item">').html(html));
+                    }
+                }
                 var date = formatDate("dddd h:mmtt d MMM yyyy");
                 var msg = '<p class="text-center"><small class="text-muted">'+date+' - '+ msg +'</small></p>';
                 $('#messages').append($('<li class="chat-content">').html(msg));
             });
 
             $(window).bind("beforeunload", function() {
-                socket.emit('close message', nickname + ' has left');
+                msg = ' has left the conversation';
+                socket.emit('close message', nickname, msg);
             });
         });
 

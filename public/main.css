@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto' !important;
-    font-size: .875rem;
+    font-size: .875rem !important;
 }
 
 form { position: fixed; bottom: 0; width: 100%; }
