@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="http://entertechbd.com/wp-content/uploads/2019/10/cropped-entertech-4-04-32x32.png" sizes="32x32" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" href="main.css">
+    <title>Entertech</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Entertech</a>
+      </nav>
+      
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column" id="users"></ul>
+            </div>
+          </nav>
+      
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mb-1">
+            <div class="video-container">
+                <video class="my-video" id="myVideo"></video>
+                <video class="user-video" id="userVideo"></video>
+            </div>
+          </main>
+        </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/jquery-3.4.1.slim.min.js" ></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/call.js"></script>
+  </body>
+</html>

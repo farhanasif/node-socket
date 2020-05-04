@@ -5,11 +5,16 @@ var io = require('socket.io')(http);
 
 let users = [];
 let userconf = [];
+let userpeer = [];
 
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
+})
+
+app.get('/web', (req, res) => {
+    res.sendFile(__dirname + '/views/call.html');
 })
 
 // app.get('/chat', (req,res) => {
@@ -44,6 +49,11 @@ io.on('connection', (socket) => {
         users.splice(pos, 1);
         console.log(users);
         io.emit('close message', nickname+' has left the conversation', users);
+    })
+
+    socket.on('peerInit', (nickname, rec, stream) => {
+        console.log('called by:'+nickname);
+        
     })
 });
 
