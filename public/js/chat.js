@@ -23,8 +23,14 @@
                         socket.emit('init message', nickname, msg);
 
                         var text = $("#m").val();
-                        socket.emit('chat message', nickname, text);
-                        $('#m').val('');
+                        if(text === '' || text === undefined){
+
+                        }
+                        else{
+                            socket.emit('chat message', nickname, text);
+                            $('#m').val('');
+                        }
+                        
                         return false;
                     }
                     else{
